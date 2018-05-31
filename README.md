@@ -1,0 +1,2 @@
+# Pc_Control_Android
+简单的电脑使用adb控制android
