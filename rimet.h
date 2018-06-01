@@ -34,6 +34,8 @@ private:
     Ui::rimet *ui;
     ExecvAdbCommon *adb;
     void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
+    QPoint s_RighetPoint,e_RighetPoint,leftPoint;
 };
 
 #endif // RIMET_H

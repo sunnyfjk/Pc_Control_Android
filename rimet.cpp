@@ -25,12 +25,30 @@ rimet::~rimet()
 
 void rimet::mousePressEvent(QMouseEvent *event)
 {
+
+    QPoint Point=event->globalPos();
     if(event->button()==Qt::LeftButton)
     {
-        QPoint leftPoint=event->globalPos();
-        leftPoint=ui->image->mapFromGlobal(leftPoint);
+
+        leftPoint=ui->image->mapFromGlobal(Point);
         leftPoint=leftPoint*3;
+
         emit sendAdbCommon(tr("adb shell input tap %1 %2").arg(leftPoint.x()).arg(leftPoint.y()));
+    }else if(event->button()==Qt::RightButton)
+    {
+        s_RighetPoint=ui->image->mapFromGlobal(Point);
+        s_RighetPoint=s_RighetPoint*3;
+    }
+}
+
+void rimet::mouseReleaseEvent(QMouseEvent *event)
+{
+    QPoint Point=event->globalPos();
+    if(event->button()==Qt::RightButton)
+    {
+        e_RighetPoint=ui->image->mapFromGlobal(Point);
+        e_RighetPoint=e_RighetPoint*3;
+        emit sendAdbCommon(tr("adb shell input swipe %1 %2 %3 %4").arg(s_RighetPoint.x()).arg(s_RighetPoint.y()).arg(e_RighetPoint.x()).arg(e_RighetPoint.y()));
     }
 }
 

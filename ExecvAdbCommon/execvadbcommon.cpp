@@ -14,6 +14,7 @@ ExecvAdbCommon::ExecvAdbCommon(QObject *parent) : QObject(parent)
 void ExecvAdbCommon::execvAdbCommon(QString cmd)
 {
     cmdLock.lock();
+    qDebug()<<cmd;
     QProcess::execute(cmd);
     cmdLock.unlock();
 }
