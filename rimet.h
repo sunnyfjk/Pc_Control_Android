@@ -5,6 +5,8 @@
 #include <QTimer>
 #include <QStringList>
 #include <QMouseEvent>
+#include <ExecvAdbCommon/execvadbcommon.h>
+#include <QThread>
 
 namespace Ui {
 class rimet;
@@ -16,28 +18,22 @@ class rimet : public QWidget
 
 public:
     explicit rimet(QWidget *parent = 0);
-    enum CMD{
-        CMD_JIESUO,
-        CMD_ZUOHUA,
-        CMD_SHOUYE,
-        CMD_LeftButton,
-    };
     ~rimet();
 private slots:
-    void fflushImage();
-
     void on_home_clicked();
 
     void on_Unlock_clicked();
 
     void on_Right_clicked();
 
+    void DisplayImage(QByteArray buf);
+signals:
+    void sendAdbCommon(QString cmd);
+
 private:
     Ui::rimet *ui;
-    QTimer *fflushTimer;
-    uint8_t jiesuo,zuohua,shouye,zuojian;
+    ExecvAdbCommon *adb;
     void mousePressEvent(QMouseEvent *event);
-    QPoint leftPoint;
 };
 
 #endif // RIMET_H

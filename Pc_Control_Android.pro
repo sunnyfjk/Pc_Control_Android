@@ -25,10 +25,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        rimet.cpp
+        rimet.cpp \
+    ExecvAdbCommon/execvadbcommon.cpp
 
 HEADERS += \
-        rimet.h
+        rimet.h \
+    ExecvAdbCommon/execvadbcommon.h
 
 FORMS += \
         rimet.ui
